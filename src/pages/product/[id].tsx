@@ -105,8 +105,8 @@ export const getStaticProps: GetStaticProps<ProductProps | {}, { id: string }> =
   return {
     props: {
       product: {
-        currency: 'BRL',
         id: product.id,
+        currency: 'BRL',
         name: product.name,
         price: price.unit_amount,
         price_id: price.id,

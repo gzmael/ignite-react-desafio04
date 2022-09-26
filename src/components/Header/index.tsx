@@ -13,6 +13,7 @@ const Header = () => {
   const { cartCount, handleCartClick } = useShoppingCart()
 
   const handleToggle = useCallback(() => {
+    console.log('here', cartCount)
     handleCartClick()
   }, [])
 

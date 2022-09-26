@@ -8,7 +8,6 @@ import { useShoppingCart } from 'use-shopping-cart'
 import * as S from './styles'
 
 const Sidebar = () => {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
   const router = useRouter()
   const { 
     shouldDisplayCart, 
@@ -16,11 +15,10 @@ const Sidebar = () => {
     cartDetails, 
     formattedTotalPrice,
     removeItem,
-    clearCart
+    clearCart,
   } = useShoppingCart()
 
   const handleCheckout = async () => {
-    setIsCreatingCheckoutSession(true);
     try {
       const result = await api.post('/checkout', {
         cart: cartDetails
@@ -30,7 +28,6 @@ const Sidebar = () => {
     } catch (err) {
       console.log(err)
     } finally {
-      setIsCreatingCheckoutSession(false);
     }
   }
   
@@ -39,6 +36,7 @@ const Sidebar = () => {
   ))
 
   const handleToggle = useCallback(() => {
+    console.log('Toggle toggle')
     handleCartClick()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -70,7 +68,6 @@ const Sidebar = () => {
         </S.Details>
         <ButtonAction
           onClick={handleCheckout}
-          disabled={isCreatingCheckoutSession}
         >
           Finalizar compra
         </ButtonAction>
